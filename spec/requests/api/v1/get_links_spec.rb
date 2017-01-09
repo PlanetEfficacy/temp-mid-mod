@@ -15,4 +15,9 @@ describe "#get to /links", type: :request do
     expect(links.count).to eq(2)
     links.each { |link| expect(link["user_id"]).to eq(user.id)}
   end
+
+  it "returns a 400 if the user is not authorized" do
+    get "/api/v1/links"
+    expect(response.status).to eq(400)
+  end
 end

@@ -15,6 +15,17 @@ class Api::V1::LinksController < ApplicationController
     end
   end
 
+  def update
+    @link = Link.update(params[:id], title: params[:link][:title],
+                                     url:   params[:link][:url],
+                                     read:  params[:link][:read])
+    if @link.save
+      render json: @link
+    else
+      binding.pry
+    end
+  end
+
   private
 
   def link_params
