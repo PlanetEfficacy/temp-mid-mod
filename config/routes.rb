@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: "links#index"
+  root to: 'sessions#new'
 
   resources :links, only: [:index]
 
