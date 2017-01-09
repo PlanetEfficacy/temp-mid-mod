@@ -3,6 +3,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-    binding.pry
+    @user = User.find_by_email(params[:email]).try(:authenticate, params[:password])
+    if @user && @user.authenticate(params[:password])
+      session[:uid] = @user.id
+      flash[:success] = "Successfully logged in!"
+      redirect_to links_path
+    else
+    end
   end
 end
