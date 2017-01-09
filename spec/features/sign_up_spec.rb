@@ -18,7 +18,7 @@ RSpec.describe "user signs in" do
 
     expect(current_path).to eq(links_path)
     expect(page).to have_content("email@example.com")
-    expect(page).to have_link("Logout")
+    expect(page).to have_link("Sign Out")
   end
 
   context "email is not unique" do
