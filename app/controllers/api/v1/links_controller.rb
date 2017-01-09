@@ -1,6 +1,7 @@
 class Api::V1::LinksController < ApplicationController
 
   def create
+    binding.pry
     @link = Link.new(link_params)
     if @link.save
       render json: @link, status: 201
@@ -12,6 +13,6 @@ class Api::V1::LinksController < ApplicationController
   private
 
   def link_params
-    params.permit(:title, :url)
+    params.require(:link).permit(:title, :url)
   end
 end
