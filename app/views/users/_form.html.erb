@@ -1,0 +1,19 @@
+<%= form_for @user do |f| %>
+  <div class="input-field col s12 m6">
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+  <div class="input-field col s12 m6">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <div class="input-field col s12 m6">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <%= f.submit "Sign Up", class: "waves-effect waves-light btn" %>
+<% end %>
+<p>
+  Already have an account?
+  <%= link_to "Sign In", login_path %>
+</p>
