@@ -15,4 +15,9 @@ describe "#post to /links", type: :request do
     expect(link["url"]).to eq(Link.first.url)
     expect(link["read"]).to eq(Link.first.read)
   end
+
+  it "returns a 400 if the user is not authenticated" do
+    post "/api/v1/links", link: { title: "Great Link", url: "http://www.google.com" }
+    expect(response.status).to eq(400)
+  end
 end

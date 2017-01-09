@@ -5,6 +5,7 @@ class Api::V1::LinksController < ApplicationController
     @links = current_user.links
     render json: @links, status: 200
   end
+
   def create
     @link = current_user.links.new(link_params)
     if @link.save
@@ -18,5 +19,9 @@ class Api::V1::LinksController < ApplicationController
 
   def link_params
     params.require(:link).permit(:title, :url)
+  end
+
+  def authorize
+    render json: {}, status: 400 unless current_user
   end
 end
