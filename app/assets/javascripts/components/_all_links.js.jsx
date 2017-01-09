@@ -1,4 +1,4 @@
-var AllSkills = React.createClass({
+var AllLinks = React.createClass({
   handleDeldete(id){
     console.log("deleting...")
   },
@@ -11,19 +11,12 @@ var AllSkills = React.createClass({
   render() {
     var links = this.props.links.map((link) => {
       return (
-        <div className="row">
-          <div className="card small">
-            { link.id }
-            { link.title }
-            { link.url }
-            { link.read }
-          </div>
-        </div>
+        <Link link={link} />
       )
     });
 
     return(
-      <div>
+      <div className="row">
         {links}
       </div>
     )

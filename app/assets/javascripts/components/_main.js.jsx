@@ -1,8 +1,12 @@
 var Main = React.createClass({
+  getInitialState() {
+    return { links: [] }
+  },
 
   componentDidMount() {
     $.getJSON('/api/v1/links.json', (response) => {
       this.setState({ links: response, allLinks: response })
+      console.log(this.state.links)
     });
   },
 
