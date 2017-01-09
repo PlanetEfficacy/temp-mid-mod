@@ -16,6 +16,7 @@ gem 'awesome_print'
 gem 'bcrypt', '~> 3.1.7'
 gem 'figaro'
 gem 'materialize-sass'
+gem 'validate_url'
 # gem 'unicorn'
 
 # gem 'capistrano-rails', group: :development
