@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "#get to /links", type: :request do
   it "returns all the user's links as json" do
-    user = create :user
+    user = create :user, email: "bestemail@exampe.com"
     create_list :link, 2, user: user
     create :link
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
