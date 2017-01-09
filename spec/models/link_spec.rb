@@ -8,4 +8,5 @@ RSpec.describe Link, type: :model do
     link = Link.new(title: "My Link", url: "www.google.com", read: true)
     expect(link.save).to eq(false)
   end
+  it { should belong_to(:user) }
 end
