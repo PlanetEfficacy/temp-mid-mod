@@ -1,0 +1,11 @@
+<nav class="teal">
+  <div class="nav-wrapper">
+    <div class="container">
+      <%= link_to "URLockBox", links_path, class: "brand-logo"%>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <%= render '/shared/logged_in' if current_user %>
+        <%= render '/shared/logged_out' unless current_user %>
+      </ul>
+    </div>
+  </div>
+</nav>
