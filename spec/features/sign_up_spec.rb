@@ -31,4 +31,38 @@ RSpec.describe "user signs in" do
       expect(page).to have_content("Email has already been taken")
     end
   end
+
+  context "passsword and confirmation do not match" do
+    scenario "provides user with warning" do
+      visit root_path
+      within "form" do
+        click_link "Sign Up"
+      end
+      fill_in "Email", with: "email@example.com"
+      fill_in "Password", with: "password"
+      fill_in "Password confirmation", with: "password1"
+      click_button "Sign Up"
+
+      expect(current_path).to eq(new_user_path)
+      expect(page).to have_content("Password confirmation doesn't match Password")
+    end
+  end
+
+  context "passsword and confirmation do not match and email is already taken" do
+    scenario "provides user with warning" do
+      user = create :user, email: "email@example.com"
+      visit root_path
+      within "form" do
+        click_link "Sign Up"
+      end
+      fill_in "Email", with: "email@example.com"
+      fill_in "Password", with: "password"
+      fill_in "Password confirmation", with: "password1"
+      click_button "Sign Up"
+
+      expect(current_path).to eq(new_user_path)
+      expect(page).to have_content("Password confirmation doesn't match Password")
+      expect(page).to have_content("Email has already been taken")
+    end
+  end
 end

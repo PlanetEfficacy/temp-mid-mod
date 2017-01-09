@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       session[:uid] = user.id
       redirect_to links_path
     else
-      user.errors.full_messages.each { |msg| flash[:error] = msg }
+      flash[:error] = user.errors.full_messages.join(", ")
       redirect_to new_user_path
     end
   end
