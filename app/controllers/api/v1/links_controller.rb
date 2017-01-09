@@ -22,7 +22,7 @@ class Api::V1::LinksController < ApplicationController
     if @link.save
       render json: @link
     else
-      binding.pry
+      render json: { message: @link.errors.full_messages.first }, status: :bad_request
     end
   end
 
