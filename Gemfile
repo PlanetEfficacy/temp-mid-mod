@@ -18,6 +18,8 @@ gem 'figaro'
 gem 'materialize-sass'
 gem 'validate_url'
 gem 'react-rails'
+gem 'sprockets', '>= 3.0.0'
+gem 'sprockets-es6'
 # gem 'unicorn'
 
 # gem 'capistrano-rails', group: :development
