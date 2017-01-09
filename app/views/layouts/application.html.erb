@@ -9,6 +9,14 @@
 <body>
   <%= render 'shared/nav' %>
   <div class="container">
+    <% flash.each do |key, value| %>
+      <div class="container">
+        <p class="flow text">
+          <%= value %>
+        </p>
+      </div>
+    <% end %>
+
     <%= yield %>
   </div>
 

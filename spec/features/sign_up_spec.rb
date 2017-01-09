@@ -28,9 +28,7 @@ RSpec.describe "user signs in" do
       sign_up
 
       expect(current_path).to eq(new_user_path)
-      expect(page).to have_content("There is already an account for that email.")
+      expect(page).to have_content("Email has already been taken")
     end
   end
-
-
 end

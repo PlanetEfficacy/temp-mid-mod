@@ -9,7 +9,8 @@ class UsersController < ApplicationController
       session[:uid] = user.id
       redirect_to links_path
     else
-
+      user.errors.full_messages.each { |msg| flash[:error] = msg }
+      redirect_to new_user_path
     end
   end
 
@@ -17,4 +18,5 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation)
     end
+
 end
