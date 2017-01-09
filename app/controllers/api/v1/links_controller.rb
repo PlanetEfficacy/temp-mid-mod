@@ -1,8 +1,7 @@
 class Api::V1::LinksController < ApplicationController
 
   def create
-    binding.pry
-    @link = Link.new(link_params)
+    @link = current_user.links.new(link_params)
     if @link.save
       render json: @link, status: 201
     else

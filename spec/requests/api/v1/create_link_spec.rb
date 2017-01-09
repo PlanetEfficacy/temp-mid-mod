@@ -13,6 +13,6 @@ describe "#post to /links", type: :request do
     expect(link["id"]).to eq(Link.first.id)
     expect(link["title"]).to eq(Link.first.title)
     expect(link["url"]).to eq(Link.first.url)
-    expect(link["status"]).to eq(Link.first.status)
+    expect(link["read"]).to eq(Link.first.read)
   end
 end
