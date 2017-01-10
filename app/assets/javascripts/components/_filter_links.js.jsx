@@ -3,12 +3,16 @@ var FilterLinks = React.createClass({
     this.props.filter(event.target.textContent)
   },
 
+  searchLinks(event) {
+    this.props.searchLinks(event.target.value)
+  },
+
   render() {
     return (
       <div className="row">
         <div className="input-field">
           <label>Search</label>
-          <input type="text"/>
+          <input type="text" onKeyUp={(event) => this.searchLinks(event)}/>
         </div>
         <div className="col l8">
           <div className="row">

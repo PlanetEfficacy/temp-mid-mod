@@ -34,11 +34,19 @@ var Main = React.createClass({
     this.setState({links: links})
   },
 
+  searchLinks(value) {
+    let links = this.state.allLinks.filter((link) => {
+      return link.title.includes(value) || link.url.includes(value);
+    })
+    this.setState({ links: links })
+  },
+
   render () {
     return (
       <div className="container">
         <NewLink handleSubmit={ this.handleSubmit }/>
-        <FilterLinks filter={this.filterLinks} />
+        <FilterLinks filter={this.filterLinks}
+                     searchLinks={this.searchLinks}/>
         <AllLinks links={ this.state.links }
                   handleUpdate={ this.handleUpdate }/>
       </div>
