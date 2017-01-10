@@ -4,8 +4,11 @@ var AllLinks = React.createClass({
   },
 
   render() {
+    console.log("LINKS:")
     console.log(this.props.links)
+    console.log("HotReads:")
     console.log(this.props.hotReads)
+    console.log("TopRead:")
     console.log(this.props.topRead)
     let links = this.props.links.map((link) => {
       return (

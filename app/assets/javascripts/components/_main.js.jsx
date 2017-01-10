@@ -54,7 +54,9 @@ var Main = React.createClass({
   },
 
   render () {
+    console.log("MAIN hotreads:")
     console.log(this.state.hotReads)
+    console.log("MAIN topreads:")
     console.log(this.state.topRead)
     return (
       <div className="container">
