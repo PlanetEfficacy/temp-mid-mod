@@ -14,12 +14,22 @@ var Main = React.createClass({
     this.setState({ links: newLinks })
   },
 
+  handleUpdate(link) {
+    var newLinks = this.state.links.map((clientLink) => {
+      if(clientLink.id === link.id) {
+        clientLink.read = link.read;
+      }
+      return clientLink;
+    })
+    this.setState({ links: newLinks })
+  },
+
   render () {
     return (
       <div className="container">
         <NewLink handleSubmit={ this.handleSubmit }/>
         <AllLinks links={ this.state.links }
-                  handleUpdate={ this.handleSubmit }/>
+                  handleUpdate={ this.handleUpdate }/>
       </div>
     )
   }

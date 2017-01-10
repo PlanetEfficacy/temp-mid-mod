@@ -19,7 +19,6 @@ var Link = React.createClass({
                       id:    this.props.link.id }
             },
       success: (link) => {
-          debugger
          this.setState( { error: false } )
          this.props.handleUpdate(link);
        }.bind(this),
@@ -28,6 +27,29 @@ var Link = React.createClass({
        }.bind(this)
      });
   },
+
+  toggleRead(event) {
+    let status = event.target.text === 'read';
+    if(status !== this.props.link.read) {
+      $.ajax({
+        url: `/api/v1/links/${this.props.link.id}`,
+        type: 'PATCH',
+        data: { link: { title: this.refs.title.textContent,
+          url:   this.refs.url.textContent,
+          read:  status,
+          id:    this.props.link.id }
+        },
+        success: (link) => {
+          this.setState( { error: false } )
+          this.props.handleUpdate(link);
+        }.bind(this),
+        error: (err) => {
+          this.setState( { error: JSON.parse(err.responseText).message } )
+        }.bind(this)
+      });
+    }
+  },
+
 
   validation(){
     if(this.state.error){
@@ -61,9 +83,9 @@ var Link = React.createClass({
             </a>
           </div>
           <div className="card-action">
-            <a href="#">delete</a>
-            <a href="#">read</a>
-            <a href="#">unread</a>
+            <div className="white-text">Mark as: </div>
+            <a href="#" onClick={ (event) => this.toggleRead(event) }>read</a>
+            <a href="#" onClick={ (event) => this.toggleRead(event) }>unread</a>
           </div>
         </div>
       </div>
