@@ -15,7 +15,7 @@ var AllLinks = React.createClass({
         <Link link={link}
         key={link.id}
         handleUpdate={this.handleUpdate}
-        hotRead={this.props.hotreads && this.props.hotReads.includes(link.url)}
+        hotRead={this.props.hotReads && this.props.hotReads.includes(link.url)}
         topRead={this.props.topRead === link.url}/>
       )
     });
