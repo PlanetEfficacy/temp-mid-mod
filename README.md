@@ -1,6 +1,6 @@
 # URLockBox
 
-## MidModule Assessment
+## End of Module Assessment
 
 This is the main application, URLockBox for my final assessment at Turing. To run it on your machine:
 
