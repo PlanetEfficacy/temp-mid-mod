@@ -7,6 +7,10 @@ var Main = React.createClass({
     $.getJSON('/api/v1/links.json', (response) => {
       this.setState({ links: response, allLinks: response })
     });
+
+    $.getJSON('http://localhost:3001/api/v1/reads.json', (response) => {
+      this.setState({ hotReads: response, topRead: response[0] })
+    });
   },
 
   handleSubmit(link) {
@@ -42,13 +46,17 @@ var Main = React.createClass({
   },
 
   render () {
+    console.log(this.state.hotReads)
+    console.log(this.state.topRead)
     return (
       <div className="container">
         <NewLink handleSubmit={ this.handleSubmit }/>
         <FilterLinks filter={this.filterLinks}
                      searchLinks={this.searchLinks}/>
         <AllLinks links={ this.state.links }
-                  handleUpdate={ this.handleUpdate }/>
+                  handleUpdate={ this.handleUpdate }
+                  hotReads={ this.state.hotReads }
+                  topRead={ this.state.topRead }/>
       </div>
     )
   }

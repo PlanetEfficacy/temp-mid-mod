@@ -28,8 +28,21 @@ var Link = React.createClass({
      });
   },
 
+  updateHotReads() {
+    $.post('http://localhost:3001/api/v1/reads',
+      { link: {
+          url: this.refs.url.textContent,
+          title: this.refs.title.textContent
+        }
+      }
+    )
+  },
+
   toggleRead(event) {
     let status = event.target.text === 'read';
+    if(status) {
+      this.updateHotReads();
+    }
     if(status !== this.props.link.read) {
       $.ajax({
         url: `/api/v1/links/${this.props.link.id}`,
@@ -71,6 +84,18 @@ var Link = React.createClass({
     }
   },
 
+  displayHotRead(){
+    if(this.props.topRead) {
+      return (
+        "Top Read!"
+      )
+    } else if (this.props.hotRead) {
+      return (
+        "Hot Read!"
+      )
+    }
+  },
+
   render() {
     return (
       <div className="col l4">
@@ -82,6 +107,7 @@ var Link = React.createClass({
                   onBlur={ (event) => this.update(event) }>
                     { this.props.link.title }
             </span>
+            <p>{ this.displayHotRead() }</p>
             <p className="flow text"
                contentEditable
                ref="url"
