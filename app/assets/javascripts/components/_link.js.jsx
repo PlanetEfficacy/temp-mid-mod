@@ -1,4 +1,7 @@
 var Link = React.createClass({
+  getInitialState() {
+    return { error: false }
+  },
 
   readStatus() {
     let status = "This link has been marked "
@@ -7,23 +10,33 @@ var Link = React.createClass({
   },
 
   update(event) {
-    let link = { title: this.refs.title.textContent,
-                 url:   this.refs.url.textContent,
-                 read:  this.props.link.read,
-                 id:    this.props.link.id }
     $.ajax({
       url: `/api/v1/links/${this.props.link.id}`,
       type: 'PATCH',
-      data: { link: link },
+      data: { link: { title: this.refs.title.textContent,
+                      url:   this.refs.url.textContent,
+                      read:  this.props.link.read,
+                      id:    this.props.link.id }
+            },
       success: (link) => {
-         this.setState( { error: "" } )
-         this.props.handleSubmit(link);
+          debugger
+         this.setState( { error: false } )
+         this.props.handleUpdate(link);
        }.bind(this),
        error: (err) => {
-         this.setState( { error: JSON.parse(err.responseText)[0] } )
+         this.setState( { error: JSON.parse(err.responseText).message } )
        }.bind(this)
      });
-    this.props.handleUpdate(link);
+  },
+
+  validation(){
+    if(this.state.error){
+      return (
+        <p className="red-text flow text">
+          {this.state.error}
+        </p>
+      )
+    }
   },
 
   render() {

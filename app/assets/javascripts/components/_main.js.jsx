@@ -14,16 +14,12 @@ var Main = React.createClass({
     this.setState({ links: newLinks })
   },
 
-  handleUpdate(link) {
-    console.log("Updating link......")
-  },
-
   render () {
     return (
       <div className="container">
         <NewLink handleSubmit={ this.handleSubmit }/>
         <AllLinks links={ this.state.links }
-                  handleUpdate={ this.handleUpdate }/>
+                  handleUpdate={ this.handleSubmit }/>
       </div>
     )
   }

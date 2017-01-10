@@ -1,6 +1,6 @@
 var NewLink = React.createClass({
   getInitialState() {
-    return { error: '' }
+    return { error: false }
   },
 
   handleClick(event) {
@@ -12,7 +12,7 @@ var NewLink = React.createClass({
       type: 'POST',
       data: { link: { title: title, url: url } },
       success: (link) => {
-        this.setState( { error: "" } )
+        this.setState( { error: false } )
         this.props.handleSubmit(link);
       }.bind(this),
       error: (err) => {
