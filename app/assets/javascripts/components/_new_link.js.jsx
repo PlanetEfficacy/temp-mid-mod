@@ -1,16 +1,36 @@
 var NewLink = React.createClass({
+  getInitialState() {
+    return { error: '' }
+  },
+
   handleClick(event) {
     event.preventDefault();
-    let name = this.refs.title.value;
-    let title = this.refs.url.value;
+    let title = this.refs.title.value;
+    let url = this.refs.url.value;
     $.ajax({
       url: '/api/v1/links',
       type: 'POST',
-      data: { skill: { title: title, url: url } },
-      success: (skill) => {
-        this.props.handleSubmit(skill);
-      }
+      data: { link: { title: title, url: url } },
+      success: (link) => {
+        this.setState( { error: "" } )
+        this.props.handleSubmit(link);
+      }.bind(this),
+      error: (err) => {
+        this.setState( { error: JSON.parse(err.responseText)[0] } )
+      }.bind(this)
     });
+  },
+
+  validation(){
+    if(this.state.error){
+      return (
+        <div className="row">
+          <p className="red-text text-darken-4 flow text col l6 offset-l3">
+            {this.state.error}
+          </p>
+        </div>
+      )
+    }
   },
 
   render() {
@@ -19,6 +39,7 @@ var NewLink = React.createClass({
         <div className="row">
           <h4 className="col l6 offset-l3">Submit a Link</h4>
         </div>
+        { this.validation() }
         <div className="row">
           <div className="input-field col l6 offset-l3">
             <label for="title-field">Title</label>
@@ -28,7 +49,7 @@ var NewLink = React.createClass({
         <div className="row">
           <div className="input-field col l6 offset-l3">
             <label for="url-field">Url</label>
-            <input type="text" id="url-field" ref="url"/>
+            <input type="url" id="url-field" ref="url"/>
           </div>
         </div>
         <div className="row">

@@ -6,7 +6,6 @@ var Main = React.createClass({
   componentDidMount() {
     $.getJSON('/api/v1/links.json', (response) => {
       this.setState({ links: response, allLinks: response })
-      console.log(this.state.links)
     });
   },
 
@@ -15,11 +14,16 @@ var Main = React.createClass({
     this.setState({ links: newLinks })
   },
 
+  handleUpdate(link) {
+    console.log("Updating link......")
+  },
+
   render () {
     return (
       <div className="container">
         <NewLink handleSubmit={ this.handleSubmit }/>
-        <AllLinks links={ this.state.links } />
+        <AllLinks links={ this.state.links }
+                  handleUpdate={ this.handleUpdate }/>
       </div>
     )
   }
