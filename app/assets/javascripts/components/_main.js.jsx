@@ -24,10 +24,21 @@ var Main = React.createClass({
     this.setState({ links: newLinks })
   },
 
+  filterLinks(value) {
+    let links = this.state.allLinks;
+    if (value === "Read") {
+      links = links.filter((link) => { return link.read })
+    } else if (value === "Unread") {
+      links = links.filter((link) => { return !link.read })
+    }
+    this.setState({links: links})
+  },
+
   render () {
     return (
       <div className="container">
         <NewLink handleSubmit={ this.handleSubmit }/>
+        <FilterLinks filter={this.filterLinks} />
         <AllLinks links={ this.state.links }
                   handleUpdate={ this.handleUpdate }/>
       </div>

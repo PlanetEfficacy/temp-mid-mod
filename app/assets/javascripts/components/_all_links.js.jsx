@@ -15,7 +15,7 @@ var AllLinks = React.createClass({
   render() {
     var links = this.props.links.map((link) => {
       return (
-        <Link link={link} handleUpdate={this.handleUpdate}/>
+        <Link link={link} key={link.id} handleUpdate={this.handleUpdate}/>
       )
     });
 
