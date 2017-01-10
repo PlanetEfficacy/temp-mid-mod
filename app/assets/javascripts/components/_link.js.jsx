@@ -61,6 +61,16 @@ var Link = React.createClass({
     }
   },
 
+  displayUrl(){
+    if(this.props.link.read) {
+      return (
+        <strike>{ this.props.link.url }</strike>
+      )
+    } else {
+      return this.props.link.url
+    }
+  },
+
   render() {
     return (
       <div className="col l4">
@@ -75,7 +85,7 @@ var Link = React.createClass({
             <p className="flow text"
                contentEditable
                ref="url"
-               onBlur={ (event) => this.update(event) }>{ this.props.link.url }</p>
+               onBlur={ (event) => this.update(event) }>{this.displayUrl()}</p>
             { this.validation() }
             <p className="flow text">{ this.readStatus() }</p>
             <a href="{this.props.link.url}" className="orange-text text-lighten-1">
