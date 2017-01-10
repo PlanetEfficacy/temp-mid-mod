@@ -5,13 +5,13 @@ var Main = React.createClass({
 
   componentDidMount() {
     this.queryLinks();
-    this.queryHotReads();
+    // this.queryHotReads();
   },
 
   queryLinks() {
     $.getJSON('/api/v1/links.json', (response) => {
       this.setState({ links: response, allLinks: response })
-    });
+    }).then(this.queryHotReads());
   },
 
   queryHotReads() {
