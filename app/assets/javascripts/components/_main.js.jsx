@@ -15,7 +15,7 @@ var Main = React.createClass({
   },
 
   queryHotReads() {
-    $.getJSON('http://localhost:3001/api/v1/reads.json', (response) => {
+    $.getJSON('https://final-hot-reads.herokuapp.com/api/v1/reads.json', (response) => {
       this.setState({ hotReads: response, topRead: response[0] })
     });
   },

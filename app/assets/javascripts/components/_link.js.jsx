@@ -29,7 +29,7 @@ var Link = React.createClass({
   },
 
   updateHotReads() {
-    $.post('http://localhost:3001/api/v1/reads',
+    $.post('https://final-hot-reads.herokuapp.com/api/v1/reads',
       { link: {
           url: this.refs.url.textContent,
           title: this.refs.title.textContent
