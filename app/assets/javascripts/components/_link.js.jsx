@@ -40,7 +40,7 @@ var Link = React.createClass({
 
   toggleRead(event) {
     let status = event.target.text === 'read';
-    if(status) {
+    if(status === true && !this.props.link.read) {
       this.updateHotReads();
     }
     if(status !== this.props.link.read) {

@@ -4,10 +4,17 @@ var Main = React.createClass({
   },
 
   componentDidMount() {
+    this.queryLinks();
+    this.queryHotReads();
+  },
+
+  queryLinks() {
     $.getJSON('/api/v1/links.json', (response) => {
       this.setState({ links: response, allLinks: response })
     });
+  },
 
+  queryHotReads() {
     $.getJSON('http://localhost:3001/api/v1/reads.json', (response) => {
       this.setState({ hotReads: response, topRead: response[0] })
     });
@@ -26,6 +33,7 @@ var Main = React.createClass({
       return clientLink;
     })
     this.setState({ links: newLinks })
+    this.queryHotReads()
   },
 
   filterLinks(value) {
